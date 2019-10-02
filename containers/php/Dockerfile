@@ -3,7 +3,9 @@ COPY php.ini /usr/local/etc/php/
 
 RUN apt-get update \
   && apt-get install -y zlib1g-dev mariadb-client \
-  && docker-php-ext-install zip unzip pdo_mysql vim nodejs
+  && docker-php-ext-install zip unzip pdo_mysql vim nodejs npm
+
+RUN npm install npm@latest -g
 
 #Composer install
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
