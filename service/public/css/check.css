@@ -1,0 +1,12 @@
+/* = Selected Text
+----------------------------------------------- */
+body {
+background:white;
+
+}
+::selection {
+    background:#d4dcd6; /* Safari */
+}
+
+
+    
