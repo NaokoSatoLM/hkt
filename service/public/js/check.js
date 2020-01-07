@@ -11,7 +11,12 @@ $(function(){
     $('.check1').on('click', function(event){
         $('.ordering_company').css('background-color', 'skyblue');
         $(this).val('確認済み');
-        $('.delivery_place').css('background-color', 'yellow');
+
+        if($('.delivery_place').css('background-color') == 'yellow'){
+            $('.delivery_place').css('background-color', 'skybkue');
+        }else{
+            $('.delivery_place').css('background-color', 'yellow');
+        }
     });
 });
 
@@ -48,24 +53,24 @@ $(function(){
 });
 
 
-function changeBorder(idname){
-    $('.check1').on('click', function(event){
-    var obj = document.getElementById(idname);
-    if(obj.style.borderWidth == "1px"){
-      obj.style.borderWidth = "0px";
-    }else{
-      obj.style.border = "solid 1px blue";
-    }
-    });
-  }
+// function changeBorder(idname){
+//     $('.check1').on('click', function(event){
+//     var obj = document.getElementById(idname);
+//     if(obj.style.borderWidth == "1px"){
+//       obj.style.borderWidth = "0px";
+//     }else{
+//       obj.style.border = "solid 1px blue";
+//     }
+//     });
+//   }
 
-function changeBorder(idname){
-$('.check2').on('click', function(event){
-var obj = document.getElementById(idname);
-if(obj.style.borderWidth == "1px"){
-    obj.style.borderWidth = "0px";
-}else{
-    obj.style.border = "solid 1px blue";
-}
-});
-}
+// function changeBorder(idname){
+// $('.check2').on('click', function(event){
+// var obj = document.getElementById(idname);
+// if(obj.style.borderWidth == "1px"){
+//     obj.style.borderWidth = "0px";
+// }else{
+//     obj.style.border = "solid 1px blue";
+// }
+// });
+// }
