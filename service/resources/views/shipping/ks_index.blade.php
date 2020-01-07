@@ -19,9 +19,17 @@
             <option value="pending">承認待ち</option>
             <option value="registered">登録済み</option>
         </select>
-            <input type="submit" value="検索">
-        </form>
-    </div><br><br><br><br>
+    </div>
+    <div class="search">
+        日時を選択してください<br>
+        <input type="date" value="{{ old('now1', $now1)}}" id="now1" name="now1">～
+        <input type="date" value="{{ old('now2', $now2)}}" id="now2" name="now2">
+        <input type="submit" value="検索">
+    </div>
+    </form>
+    <br><br><br><br>
+
+
     @if(isset($msg))
         {{$msg}}
     @else

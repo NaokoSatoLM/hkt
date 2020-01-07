@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Carbon\carbon;
 
 class ShipController extends Controller
 {
@@ -20,21 +21,26 @@ class ShipController extends Controller
             '金額'=>'15000',
             '受付日時'=>'2019/12/12',
             'ステータス'=>'承認待ち',
-        ],
+            ],
             ['id'=>'2',
             '発注者'=>'NW',
             '納品先'=>'大阪',
             '金額'=>'50000',
             '受付日時'=>'2019/12/12',
             'ステータス'=>'未処理'
-    ],
-    
-    ];
-        return view('shipping/ks_index', compact('datas'));
+            ],
+        ];
+
+        //今日の日付呼び出す
+        $now1 = Carbon::now()->format('Y-m-d');
+        $now2 = Carbon::now()->format('Y-m-d');
+        return view('shipping/ks_index', compact('datas','now1', 'now2'));
     }
 
     public function ksSearch(Request $request)
     {
+        $now1 = $request['now1'];
+        $now2 = $request['now2'];
         if($request['status'] == "untreated") {
             $datas = [
             
@@ -46,7 +52,8 @@ class ShipController extends Controller
                 'ステータス'=>'未処理'
                 ],
             ];
-            return view('shipping/ks_index', compact('datas'));
+
+            return view('shipping/ks_index', compact('datas','now1', 'now2'));
 
         } elseif($request['status'] == "pending") {
             $datas = [
@@ -58,7 +65,7 @@ class ShipController extends Controller
                 'ステータス'=>'承認待ち',
             ],
             ];
-            return view('shipping/ks_index', compact('datas'));
+            return view('shipping/ks_index', compact('datas','now1', 'now2'));
 
         } elseif($request['status'] == "registered") {
             $msg = "データがありありません";
@@ -112,9 +119,28 @@ class ShipController extends Controller
                 '合計金額'=>'15000',
                 '送り状'=>'納品先でのパイロット試作用',
                 ],
+                ['id'=>'5',
+                '納品先'=>'和歌山工場',
+                '商品名'=>'サンプル',
+                '容量'=>'100g',
+                '個数'=>'1',
+                '単価'=>'0',
+                '合計金額'=>'0',
+                '送り状'=>'開発の佐藤様宛',
+                ],
+                ['id'=>'6',
+                '納品先'=>'滋賀工場',
+                '商品名'=>'食卓用',
+                '容量'=>'20g',
+                '個数'=>'100',
+                '単価'=>'150',
+                '合計金額'=>'15000',
+                '送り状'=>'午前中着希望',
+                ],
             ];
+            $alert = "初回注文::商品名:食卓用,容量:20g";
 
-            return view('shipping/ks_check', compact('datas', 'request', 'old_datas'));
+            return view('shipping/ks_check', compact('datas', 'request', 'old_datas','alert'));
 
         }elseif($request['confirm_id'] == "2"){
             $datas = [
@@ -146,9 +172,27 @@ class ShipController extends Controller
                 '合計金額'=>'15000',
                 '送り状'=>'午前中着希望',
                 ],
+                ['id'=>'5',
+                '納品先'=>'和歌山工場',
+                '商品名'=>'サンプル',
+                '容量'=>'100g',
+                '個数'=>'1',
+                '単価'=>'0',
+                '合計金額'=>'0',
+                '送り状'=>'開発の佐藤様宛',
+                ],
+                ['id'=>'6',
+                '納品先'=>'滋賀工場',
+                '商品名'=>'食卓用',
+                '容量'=>'20g',
+                '個数'=>'100',
+                '単価'=>'150',
+                '合計金額'=>'15000',
+                '送り状'=>'午前中着希望',
+                ],
             ];
-
-            return view('shipping/ks_check', compact('datas', 'request', 'old_datas'));
+            $alert = "";
+            return view('shipping/ks_check', compact('datas', 'request', 'old_datas','alert'));
         }
     }
 
