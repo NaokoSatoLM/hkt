@@ -27,31 +27,21 @@
             }
         </style>
     </head>
-    
-<body>
+<body >
+
 
 <!-- 画面分割 -->
 <div class="columns is-multiline">
-    <div class="column is-4">
-    <!-- <div style="display:table;  width:100%;"> -->
-        <!-- <div style="display:table-cell; width:600px;"> -->
-            <div id='originalFax' >
-                /////////////FAX原本///////////////////<br>
-                <div class="ordering_company">発注書</div><br> 
-                <div class="our_company">伯方塩業株式会社御中</div><br>
-                <div class="delivery_place">納品先</div><br>
-                <div class="delivery_date">納品希望日</div><br>
-                <div class="item-detail">商品名</div><br>
-                <div class="item-detail">容量</div><br>
-                <div class="item-detail">個数</div><br>
-                <div class="item-detail">単価</div><br>
-                <div class="item-detail">金額</div><br>
-                <div class="ordering-dep">発注担当部署</div><br>
-                /////////////FAX原本///////////////////
-            </div>
+    <div class="column is-12" style="background:yellow;">
+    アラート出す部分
     </div>
-    <!-- <div style="display:table-cell; width:500px;"> -->
-    <div class="column is-4">
+    <div class="column is-6">
+        <div id='originalFax'>
+            <canvas id="sample1" height="600" width="550">
+            </canvas>
+        </div>
+    </div>
+    <div class="column is-6">
         <div name="subtitle">確認事項</div>
         <div id='inputForm'>
             発注者:<input type='text' id='ordering_company' placeholder="{{$request['company']}}"  class="ordering_company">
@@ -61,107 +51,65 @@
                 <input type="button" id='check2' value="確定" class="check2"><br>
 
             納品希望日:<input type='text' id='delivery_date'  placeholder="{{$request['date']}}" class="delivery_date">
-            <input type="button" id='check3' value="確定" class="check3"><br>
+                <input type="button" id='check3' value="確定" class="check3"><br>
 
             注文商品詳細:
             <table border="1">
                 <tr>
                     <th>商品名</th>
+                    <th>商品コード</th>
                     <th>容量</th>
                     <th>個数</th>
                     <th>単価</th>
                     <th>合計金額</th>
+                    <th>在庫数</th>
                 </tr>
                 @foreach($datas as $data)
                 <tr>
                     <td class="item-detail">{{$data['商品名']}}</td>
+                    <td class="item-detail"></td>
                     <td class="item-detail">{{$data['容量']}}</td>
                     <td class="item-detail">{{$data['個数']}}</td>
                     <td class="item-detail">{{$data['単価']}}</td>
                     <td class="item-detail">{{$data['合計金額']}}</td>
+                    <td class="item-detail">20</td>
                     </td>
                 </tr>
                 @endforeach
-                </table>
-                <div class="alert">{{$alert}}</div>
+            </table>
+            <!-- 初回購入の時のアラート -->
+            <div class="alert">{{$alert}}</div>
                 <input type="button"  value="確定" class="check4"><br>
             <div name="invoice">
                 <textarea name="invoice" rows="4" cols="40" class="invoice">送り状の内容を記入してください</textarea>
             </div>
             <input type="button"  value="確定" class="check5"><br><br>
             <div style="display:inline-flex">
-                <form action='approval' method="GET" >
-                    <input type="submit" value="承認">
+                <!-- data確認後送付処理 -->
+                <!-- 承認の場合 -->
+                <form action='ks_approve' method="GET" >
+                    <input type="checkbox" value="承認" id="ok" name="ok">承認する
                 </form>
+                <!-- 保存のみの場合 -->
                 <form action='index' method="GET" >　  
-                    <input type="submit" value="保存して終了">
+                    <input type="button" value="保存して終了" id="save" class="save">
                 </form>
             </div>
         </div>
-    </div>
-    <!-- <div style="display:table-cell; width:700px;"> -->
-    <div class="column is-4">
-        <div name="subtitle">過去の注文履歴</div>
-
-        <div class='old_detail'>
-            発注者:{{$request['company']}}<br>
-            納品先:{{$request['place']}}<br>
-            過去注文商品詳細:
-            <table border="1" width="450" height="300">
-                <tr>
-                    <th width="20%">納品先</th>
-                    <th width="10%">商品コード</th>
-                    <th width="10%">商品名</th>
-                    <th width="5%">容量</th>
-                    <th width="5%">個数</th>
-                    <th width="10%">単価</th>
-                    <th width="10%">合計金額</th>
-                    <th width="50%">送り状</th>
-                </tr>
-                <div style="overflow-y:scroll;">
-
-                    @foreach($old_datas as $data)
-                    <tr>
-                        <td>{{$data['納品先']}}</td>
-                        <td></td>
-                        <td>{{$data['商品名']}}</td>
-                        <td>{{$data['容量']}}</td>
-                        <td>{{$data['個数']}}</td>
-                        <td>{{$data['単価']}}</td>
-                        <td>{{$data['合計金額']}}</td>
-                        <td>{{$data['送り状']}}</td>
-                    </tr>
-                    @endforeach
-                </div>
-            </table><br>
-        </div>
-        <div id='old_detail'>
-            倉庫在庫:
-            <table border="1">
-                <tr>
-                    <th width="10%">倉庫名</th>
-                    <th width="10%">商品コード</th>
-                    <th width="10%">商品名</th>
-                    <th width="5%">容量</th>
-                    <th width="5%">個数</th>
-                </tr>
-                @foreach($old_datas as $data)
-                <tr>
-                    <td>KS</td>
-                    <td></td>
-                    <td>{{$data['商品名']}}</td>
-                    <td>{{$data['容量']}}</td>
-                    <td>{{$data['個数']}}</td>
-                </tr>
-                @endforeach
-            </table><br>
+        <div class="show_old_order">
+        <form action="/past_order_detail" method="GET">
+            <input type="submit" value="過去の注文履歴を見る">
+            <input type="hidden" value="{{$confirm_id}}" name="confirm_id">
+            <input type="hidden" value="{{$request['company']}}" name="company">
+            <input type="hidden" value="{{$request['place']}}" name="place">
+        </form>
         </div>
     </div>
 </div>
-<div style="height:100px; width:300px; overflow-y:scroll;">
-<table border=1 height="100" width="300" bgcolor="#9999ff"><tr><td>
-　　　表示したいテーブル
-</td></tr></table>
-</div>
+<!-- キャンバス上に表す図形の作成 -->
+<div class="square1" id="square1"></div>
+<div class="square2" id="square2"></div>
+<div class="square3" id="square3"></div>
+<div class="square4" id="square4"></div>
 </body>
 </html>
