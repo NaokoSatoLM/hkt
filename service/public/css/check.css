@@ -8,5 +8,44 @@ background:white;
     background:#d4dcd6; /* Safari */
 }
 
+#originalFax{
 
-    
+    border:solid 1px black;
+    margin:20px;
+}
+
+.square1 {
+    width: 70px;
+    height: 10px;
+    position:absolute ;
+    left:319px; 
+    top:130px; 
+    background: rgb(255,255,0,0.4);
+ }
+ .square2 {
+    display:none ;
+    width: 160px;
+    height: 10px;
+    position:absolute ;
+    left:316px; 
+    top:123px; 
+    background: rgb(255,255,0,0.4);
+ }
+ .square3 {
+    display:none ;
+    width: 100px;
+    height: 10px;
+    position:absolute ;
+    left:74px; 
+    top:131px; 
+    background: rgb(255,255,0,0.4);
+ }
+ .square4 {
+    display:none ;
+    width: 300px;
+    height: 75px;
+    position:absolute ;
+    left:68px; 
+    top:164px; 
+    background: rgb(255,255,0,0.4);
+ }
