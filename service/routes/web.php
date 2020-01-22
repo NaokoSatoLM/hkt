@@ -20,4 +20,5 @@ Route::post('/ks_index', 'ShipController@ksSearch');
 Route::get('/ks_check', 'ShipController@ksCheck');
 Route::get('/ks_approve', 'ShipController@ksApprove');
 Route::get('/past_order_detail', 'ShipController@showDetail');
-Route::get('/pdf', 'ShipController@pdf');
+
+Route::get('/orders/{code}', 'ShipController@index');

@@ -8,13 +8,26 @@ use Spatie\PdfToImage\Pdf;
 
 class ShipController extends Controller
 {
+    public $ShipmentNameTable = [
+        'ks' => '日通',
+        'ds' => '備後',
+        'ys' => '名鉄',
+        'sx' => '王子',
+    ];
+
+    public function index(Request $request, $code)
+    {
+        // $orders = Order::where('shipment_code' => $code)->where('status', 'NotVerified')->all();
+        return $this->ksIndex($code);
+    }
+
     
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function ksIndex()
+    public function ksIndex($code = null)
     {
         $datas = [
             ['id'=>'1',
@@ -33,14 +46,17 @@ class ShipController extends Controller
             ],
         ];
 
+        $name = $this->ShipmentNameTable[$code];
+
         //今日の日付呼び出す
         $now1 = Carbon::now()->format('Y-m-d');
         $now2 = Carbon::now()->format('Y-m-d');
-        return view('shipping/ks_index', compact('datas','now1', 'now2'));
+        return view('shipping/ks_index', compact('datas','now1', 'now2', 'name'));
     }
 
     public function ksSearch(Request $request)
     {
+        $name = $request['driver'];
         $now1 = $request['now1'];
         $now2 = $request['now2'];
         if($request['status'] == "untreated") {
@@ -55,7 +71,7 @@ class ShipController extends Controller
                 ],
             ];
 
-            return view('shipping/ks_index', compact('datas','now1', 'now2'));
+            return view('shipping/ks_index', compact('datas','now1', 'now2','name'));
 
         } elseif($request['status'] == "pending") {
             $datas = [
@@ -67,11 +83,11 @@ class ShipController extends Controller
                 'ステータス'=>'承認待ち',
             ],
             ];
-            return view('shipping/ks_index', compact('datas','now1', 'now2'));
+            return view('shipping/ks_index', compact('datas','now1', 'now2','name'));
 
         } elseif($request['status'] == "registered") {
             $msg = "データがありありません";
-            return view('shipping/ks_index', compact('msg'));
+            return view('shipping/ks_index', compact('msg','now1', 'now2','name','name'));
         }
     }
     /**
