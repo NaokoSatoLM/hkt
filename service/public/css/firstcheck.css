@@ -1,0 +1,118 @@
+/* = Selected Text
+----------------------------------------------- */
+html, body {
+    background-color: #fff;
+    color: #636b6f;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 200;
+    margin: 0;
+    font-size:40px;
+}
+
+.content {
+    margin: 0px;
+}
+.title{
+    margin-top:20px;
+    text-align:center;
+}
+
+.columns {
+    margin:2rem 1rem 2rem 1rem;
+}
+.column {
+    margin-top:10px;
+    margin-bottom:20px;
+}
+
+.header{
+    padding-top:40px;
+    font-size:60px;
+    text-align: center;
+}
+
+.button{
+    text-align:center;
+
+}
+.header-btn{
+    margin-left:93%;
+}
+
+
+.around-box {
+    margin-bottom:20px;
+    width: 100%; /*幅の調節*/
+    color: #666666; /*文字色*/
+    border: 1px solid #ccc; /*線の太さ・色*/
+    border-radius: 5px; /*角の丸み*/ 
+}
+
+.check4{
+    margin-top:10px;
+}
+.check5{
+    margin-top:0px;
+}
+.item{
+    width:70%;
+    height:60%;
+    font-size:40px;
+}
+.check7{
+    margin-top:200px;
+}
+.set-size {
+    height:50px;
+    width:600px;
+    font-size:30px;
+}
+.set-size-day{
+    height:50px;
+    width:300px;
+    font-size:30px;
+}
+.item-detail.table{
+
+    width:100%;
+}
+.item-detail{
+    width:100%;
+    font-size:30px;
+}
+
+.set-size-invoice{
+    height:300px;
+    width:90%;
+    font-size:30px;
+    margin-left:2rem;
+}
+#container{
+    margin:10px;
+    border:solid 1px black;
+    z-index:10;
+    
+}
+.move{
+    display: block;;
+}
+input.radio{
+    transform: scale(2);
+    
+}
+input.approve{
+    transform: scale(5);
+    
+}
+.approve-box{
+    margin:20px 20px 10px 60px;
+    
+}
+.approve-msg{
+    width:500px;
+}
+
+.show_old_order{
+    margin-left:50%;
+}
+
