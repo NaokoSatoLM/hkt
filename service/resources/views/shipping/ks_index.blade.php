@@ -24,7 +24,7 @@
             font-weight: 200;
             height: 100vh;
             margin: 0;
-            font-size:30px;
+            font-size:40px;
         }
 
         .content {
@@ -47,15 +47,17 @@
             color: #666666; /*文字色*/
             border: 1px solid #ccc; /*線の太さ・色*/
             border-radius: 5px; /*角の丸み*/ 
-            font-size:30px;
         }
         .title{
             margin-top:20px;
         }
         .set-size{
             height:50px;
-            width:300px;
-            font-size:30px;
+            width:10%;
+            font-size:40px;
+        }
+        .table{
+            font-size:40px;
         }
     </style>
 

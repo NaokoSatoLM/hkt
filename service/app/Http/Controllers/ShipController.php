@@ -31,17 +31,24 @@ class ShipController extends Controller
     {
         $datas = [
             ['id'=>'1',
-            '発注者'=>'LM',
-            '納品先'=>'大阪',
+            '発注者'=>'藤徳物産株式会社',
+            '納品先'=>'岡山県岡山市南区古新田 1283-3',
             '金額'=>'15000',
-            '受付日時'=>'2019/12/12',
+            '受付日時'=>'2020/1/30',
             'ステータス'=>'承認待ち',
             ],
             ['id'=>'2',
-            '発注者'=>'NW',
-            '納品先'=>'大阪',
-            '金額'=>'50000',
-            '受付日時'=>'2019/12/12',
+            '発注者'=>'藤徳物産株式会社',
+            '納品先'=>'岡山県岡山市南区古新田 1283-3',
+            '金額'=>'15000',
+            '受付日時'=>'2020/1/30',
+            'ステータス'=>'承認待ち'
+            ],
+            ['id'=>'3',
+            '発注者'=>'藤徳物産株式会社',
+            '納品先'=>'岡山県岡山市南区古新田 1283-3',
+            '金額'=>'15000',
+            '受付日時'=>'2020/11/30',
             'ステータス'=>'未処理'
             ],
         ];
@@ -61,12 +68,11 @@ class ShipController extends Controller
         $now2 = $request['now2'];
         if($request['status'] == "untreated") {
             $datas = [
-            
-                ['id'=>'2',
-                '発注者'=>'NW',
-                '納品先'=>'大阪',
-                '金額'=>'50000',
-                '受付日時'=>'2019/12/12',
+                ['id'=>'3',
+                '発注者'=>'藤徳物産株式会社',
+                '納品先'=>'岡山県岡山市南区古新田 1283-3',
+                '金額'=>'15000',
+                '受付日時'=>'2020/12/30',
                 'ステータス'=>'未処理'
                 ],
             ];
@@ -76,17 +82,24 @@ class ShipController extends Controller
         } elseif($request['status'] == "pending") {
             $datas = [
                 ['id'=>'1',
-                '発注者'=>'LM',
-                '納品先'=>'大阪',
+                '発注者'=>'藤徳物産株式会社',
+                '納品先'=>'岡山県岡山市南区古新田 1283-3',
                 '金額'=>'15000',
-                '受付日時'=>'2019/12/12',
+                '受付日時'=>'2020/12/30',
                 'ステータス'=>'承認待ち',
-            ],
+                ],
+                ['id'=>'2',
+                '発注者'=>'藤徳物産株式会社',
+                '納品先'=>'岡山県岡山市南区古新田 1283-3',
+                '金額'=>'15000',
+                '受付日時'=>'2020/12/30',
+                'ステータス'=>'承認待ち'
+                ],
             ];
             return view('shipping/ks_index', compact('datas','now1', 'now2','name'));
 
         } elseif($request['status'] == "registered") {
-            $msg = "データがありありません";
+            $msg = "登録済みのデータはありません";
             return view('shipping/ks_index', compact('msg','now1', 'now2','name','name'));
         }
     }
@@ -101,22 +114,33 @@ class ShipController extends Controller
             //注文詳細のdata
             $datas = [
                 ['id'=>'1',
-                '商品名'=>'サンプル',
+                '商品名'=>'伯方の塩',
                 '商品コード'=>'1234-5',
-                '容量'=>'100g',
-                '個数'=>'1',
-                '単価'=>'0',
-                '合計金額'=>'0',
+                '数量'=>'500G',
+                '入数'=>'20×2',
+                '発注数'=>'4',
+                '単価'=>'10000',
+                '合計金額'=>'50000',
                 '在庫数'=>'100',
                 ],
                 ['id'=>'2',
-                '商品名'=>'食卓用',
-                '商品コード'=>'5432-1',
-                '容量'=>'20g',
-                '個数'=>'100',
-                '単価'=>'150',
-                '合計金額'=>'15000',
-                '在庫数'=>'200',
+                '商品名'=>'伯方の塩 あら塩SP',
+                '商品コード'=>'1234-5',
+                '数量'=>'200G',
+                '入数'=>'12×4',
+                '発注数'=>'3',
+                '単価'=>'10000',
+                '合計金額'=>'50000',
+                '在庫数'=>'100',
+                ],
+                ['商品名'=>'伯方の塩 焼塩',
+                '商品コード'=>'1234-5',
+                '数量'=>'2G×25',
+                '入数'=>'20',
+                '発注数'=>'5',
+                '単価'=>'10000',
+                '合計金額'=>'50000',
+                '在庫数'=>'100',
                 ],
             ];
 
@@ -138,28 +162,82 @@ class ShipController extends Controller
 
         }elseif($request['confirm_id'] == "2"){
             $datas = [
-                ['id'=>'3',
-                '商品名'=>'工業用',
-                '容量'=>'10kg',
-                '個数'=>'5',
+                ['id'=>'1',
+                '商品名'=>'伯方の塩',
+                '商品コード'=>'1234-5',
+                '数量'=>'500G',
+                '入数'=>'20×2',
+                '発注数'=>'4',
                 '単価'=>'10000',
                 '合計金額'=>'50000',
+                '在庫数'=>'100',
+                ],
+                ['id'=>'2',
+                '商品名'=>'伯方の塩 あら塩SP',
+                '商品コード'=>'1234-5',
+                '数量'=>'200G',
+                '入数'=>'12×4',
+                '発注数'=>'3',
+                '単価'=>'10000',
+                '合計金額'=>'50000',
+                '在庫数'=>'100',
+                ],
+                ['商品名'=>'伯方の塩 焼塩',
+                '商品コード'=>'1234-5',
+                '数量'=>'2G×25',
+                '入数'=>'20',
+                '発注数'=>'5',
+                '単価'=>'10000',
+                '合計金額'=>'50000',
+                '在庫数'=>'100',
                 ],
             ];
 
             $alert = "";
             $confirm_id = $request['confirm_id'];
             return view('shipping/ks_check', compact('datas', 'request', 'alert', 'confirm_id'));
+        } elseif($request['confirm_id'] == "3"){
+            $datas = $datas = [
+                ['id'=>'1',
+                '商品名'=>'伯方の塩',
+                '商品コード'=>'1234-5',
+                '数量'=>'500G',
+                '入数'=>'20×2',
+                '発注数'=>'4',
+                '単価'=>'10000',
+                '合計金額'=>'50000',
+                '在庫数'=>'100',
+                ],
+                ['id'=>'2',
+                '商品名'=>'伯方の塩 あら塩SP',
+                '商品コード'=>'1234-5',
+                '数量'=>'200G',
+                '入数'=>'12×4',
+                '発注数'=>'3',
+                '単価'=>'10000',
+                '合計金額'=>'50000',
+                '在庫数'=>'100',
+                ],
+                ['商品名'=>'伯方の塩 焼塩',
+                '商品コード'=>'1234-5',
+                '数量'=>'2G×25',
+                '入数'=>'20',
+                '発注数'=>'5',
+                '単価'=>'10000',
+                '合計金額'=>'50000',
+                '在庫数'=>'100',
+                ],
+            ];
+
+            $alert = "";
+            $confirm_id = $request['confirm_id'];
+            return view('shipping/ks_firstcheck', compact('datas', 'request', 'alert', 'confirm_id'));
+
         }
     }
 
 
-    public function ksApprove()
-    {
-        return view('shipping/ks_approve');
-
-
-    }
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -261,48 +339,5 @@ class ShipController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function pdf()
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+    
 }
