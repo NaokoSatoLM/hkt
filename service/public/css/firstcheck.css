@@ -116,3 +116,11 @@ input.approve{
     margin-left:50%;
 }
 
+/* focusで色変更 */
+.on-edit{
+background-color: yellow;
+}
+.checked{
+background-color: blue;
+}
+

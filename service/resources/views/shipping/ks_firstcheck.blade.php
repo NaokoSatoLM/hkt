@@ -61,7 +61,7 @@
                     <button class="button">
                         発注者:&emsp;&emsp;&emsp;
                         <input type='text' id='ordering_company' 
-                                placeholder="{{$request['company']}}" class="set-size check1">
+                                placeholder="{{$request['company']}}" class="set-size check1 fax-field">
                     </button>
                     <button class="button">
                         <input type="button" id='check1' value="確定" class="check1 button is-small is-selected "><br>
@@ -69,7 +69,7 @@
                 </div>
                 <div class="buttons has-addons">
                     <button class="button">
-                        納品先:&emsp;&emsp;&emsp;<input type='text' id='delivery_place'  placeholder="{{$request['place']}}" class="set-size check2">
+                        納品先:&emsp;&emsp;&emsp;<input type='text' id='delivery_place'  placeholder="{{$request['place']}}" class="set-size check2 fax-field">
                     </button>
                     <button class="button">
                             <input type="button" id='check2' value="確定" class="check2 button is-small"><br>
@@ -77,7 +77,7 @@
                 </div>
                 <div class="buttons has-addons">
                     <button class="button">
-                        納品希望日:&emsp;<input type='text'   placeholder="{{$request['date']}}" class="set-size-day check8" id="deli_date2">
+                        納品希望日:&emsp;<input type='text'   placeholder="{{$request['date']}}" class="set-size-day check8 fax-field" id="deli_date2">
                     </button>
                     <button class="button">
                         <input type="button" id='check8' value="確定" class="check8 button is-small">
@@ -85,7 +85,7 @@
                 </div>
                 <div class="buttons has-addons">
                     <button class="button">
-                        発注No.:&emsp;&emsp;&nbsp;<input type='text'   placeholder="{{$request['date']}}" class="set-size-day check5 ">
+                        発注No.:&emsp;&emsp;&nbsp;<input type='text'   placeholder="{{$request['date']}}" class="set-size-day check5 fax-field">
                     </button>
                     <button class="button">
                         <input type="button" value="確定" class="check5 button is-small" id="check5">
@@ -107,7 +107,7 @@
                                 </tr>
                                 @foreach($datas as $data)
                                 <tr>
-                                    <td><input type="text" value="{{$data['商品名']}}" class="check6 item"><br><input type="text" value="000-000" class="check6 item"></td>
+                                    <td><input type="text" value="{{$data['商品名']}}" class="check6 item check"><br><input type="text" value="000-000" class="check6 item"></td>
                                     <td><input type="text" value="{{$data['数量']}}" class="check6 item"></td>
                                     <td><input type="text" value="{{$data['入数']}}" class="check6 item"></td>
                                     <td><input type="text" value="{{$data['発注数']}}" class="check6 item">個</td>
