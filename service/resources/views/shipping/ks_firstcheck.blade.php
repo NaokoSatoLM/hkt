@@ -121,18 +121,13 @@
                     </div>
                 </div>
             </div>
-            
             <div style="display:inline-flex">
                 <!-- data確認後送付処理 -->
                 <form method="GET" action="/index">
                     <!-- 一時保存 -->
                     <input type="submit" value="一時保存" id="save" class="save button is-gray is-large">&emsp;
                     <!-- 保存 -->
-                    @if($confirm_id == "1" or "2")
-                        <input type="submit" value="承認する" id="save" class="save button is-gray is-large">&emsp;
-                    @elseif($confirm_id == "3")
-                        <input type="submit" value="確認完了" id="save" class="save button is-gray is-large">&emsp;
-                    @endif
+                    <input type="submit" value="確認完了" id="save" class="save button is-gray is-large">&emsp;
                 </form>
             </div>
         </div>
