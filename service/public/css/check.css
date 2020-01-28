@@ -42,21 +42,19 @@ HEADER */
     text-align: center;
 }
 
-
 .header-btn{
     margin-left:90%;
 }
 /* --------------------------
 HEADER 終了*/
 /* -----------------------
-確認項目一覧 */
+確認事項上段 */
 .position{
-    padding-left:10%;
-
+    padding-left:8%;
 }
 
 /* -----------------------
-確認項目一覧 終了*/
+確認事項上段 終了*/
 
 /* -----------------------
 アラート */
@@ -68,9 +66,8 @@ HEADER 終了*/
 /* -----------------------
 アラート終了 */
 
-
 /* -----------------------
-商品詳細・在庫の表 */
+商品詳細・在庫のテーブル*/
 .around-box {
     text-align: center;
     margin-bottom:20px;
@@ -138,19 +135,14 @@ HEADER 終了*/
     font-size:40px;
     margin-left:2rem;
 }
-
-
 input.radio{
     transform: scale(3);
-    
 }
 input.approve{
     transform: scale(5);
-    
 }
 .approve-box{
     margin:20px 20px 10px 60px;
-    
 }
 .approve-msg{
     width:500px;

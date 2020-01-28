@@ -15,10 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/index', 'HomeController@index');
-Route::get('/orders/{code}', 'ShipController@index');
-
-Route::get('/ks_index', 'ShipController@ksIndex');
-Route::post('/ks_index', 'ShipController@ksSearch');
-Route::get('/ks_check', 'ShipController@ksCheck');
-Route::get('/past_order_detail', 'ShipController@showDetail');
+Route::get('/orders/{code}', 'OrderSearchController@index');
+Route::get('/ks_index', 'OrderSearchController@ksIndex');
+Route::post('/ks_index', 'OrderSearchController@ksSearch');
+Route::get('/ks_check', 'CheckController@ksCheck');
+Route::get('/past_order_detail', 'CheckController@showDetail');
 
