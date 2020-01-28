@@ -79,7 +79,7 @@
                     <button class="button">
                         納品希望日:&emsp;
                         <input type='text'
-                        placeholder="2019/9/6" 
+                        placeholder="2019/9/7" 
                         class="set-size-large check8" 
                         id="deli_date2">
                     </button>
@@ -88,7 +88,7 @@
                     <button class="button">
                         納品確定日:&emsp;
                         <input type='text'   
-                        placeholder="2019/9/6" 
+                        placeholder="2019/9/7" 
                         class="set-size-large check4" 
                         id="deli_date3">
                     </button>

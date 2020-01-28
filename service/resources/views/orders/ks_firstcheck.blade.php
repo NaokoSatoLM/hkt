@@ -111,7 +111,7 @@
                 </div>
                 <div class="buttons has-addons">
                     <button class="button">
-                        納品希望日:&emsp;<input type='text'   placeholder="2019/9/6" class="set-size-day check8 fax-field" id="deli_date1">
+                        納品希望日:&emsp;<input type='text'　placeholder="2019/9/7" class="set-size-day check8 fax-field" id="deli_date1">
                     </button>
                     <button class="button">
                         <input type="button" id='check8' value="確定" class="check8 button is-small deli_date1">
