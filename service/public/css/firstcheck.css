@@ -33,13 +33,10 @@ html, body {
 
 .button{
     text-align:center;
-
 }
 .header-btn{
     margin-left:93%;
 }
-
-
 .around-box {
     margin-bottom:20px;
     width: 100%; /*幅の調節*/
@@ -48,14 +45,32 @@ html, body {
     border-radius: 5px; /*角の丸み*/ 
 }
 
+
+
 .check4{
     margin-top:10px;
 }
 .check5{
     margin-top:0px;
 }
-.item{
-    width:70%;
+
+.item-wide{
+    width:100%;
+    height:60%;
+    font-size:40px;
+}
+.item-mid{
+    width:120%;
+    height:60%;
+    font-size:40px;
+}
+.item-sma{
+    width:60%;
+    height:60%;
+    font-size:40px;
+}
+.item-mini{
+    width:30%;
     height:60%;
     font-size:40px;
 }
@@ -91,22 +106,18 @@ html, body {
     margin:10px;
     border:solid 1px black;
     z-index:10;
-    
 }
 .move{
     display: block;;
 }
 input.radio{
     transform: scale(2);
-    
 }
 input.approve{
     transform: scale(5);
-    
 }
 .approve-box{
     margin:20px 20px 10px 60px;
-    
 }
 .approve-msg{
     width:500px;

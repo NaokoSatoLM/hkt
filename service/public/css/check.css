@@ -102,12 +102,12 @@ HEADER 終了*/
 .set-size {
     height:50px;
     width:600px;
-    font-size:30px;
+    font-size:40px;
 }
-.set-size-day{
+.set-size-large{
     height:50px;
     width:300px;
-    font-size:30px;
+    font-size:40px;
 }
 .table{
     margin-left:1rem;
