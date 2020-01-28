@@ -259,6 +259,24 @@
 // -------------------------------------------------------
 
 /////イベント処理を書く
+// 必要な変数作成
+    var stage ;
+// 必要な配列作成
+    //1.四角の図形を格納する配列
+    rectArray = [
+        // {handlerId:'order_company'},
+
+    ];
+    // 2.四角形のサイズの情報の配列
+    rectConditions = [
+        {order_company:{x: 483,
+                        y: 23,
+                        width: 250,
+                        height:100,}
+        }
+    ];
+
+
 // -【1】画面表示
 //  -PDFの画像を読みこんで表示する
      function showPDFImg() {
@@ -297,23 +315,92 @@
         };
     }
 
-    // -【2】フィールドと確認ボタンを黄色にする
-    function OnFocus(){
+    // -【2】フィールドが入力モードになったとき
+
+    function onFocus() {
         // フォーカスされたフィールドとボタンを黄色にする
         $('input[type="text"]').focus(function(){
             $(this).addClass('on-edit');
-            var btn = document.getElementsByClassName(this);
-            console.log(btn);
+            //入力モードのinputタグのIDと同じclassを持っているボタンを探す
+             var fieldId = $(this).attr('id');
+             var element = document.getElementsByClassName(fieldId);
+             $(element[0]).addClass('on-edit');
 
+            searchRect(element[0]);
         });
     }
 
-    function OutFocus(){
+    function searchRect(elementId) {
+        //四角が作成されているか配列から探す。フォーカスのあったIDから、その関連する四角をrectArray配列から検索
+        // $('input[type="text"]').focus(function(){
+        //     var fieldId = $(this).attr('id');
+            let rectDict = rectArray.find(rect => rect.handlerId == elementId);
+            console.log(rectDict);
+                //→見つければ、handlerId: "order_company"など、見つからないundifined
+
+            if(rectDict === 'null') {
+                //黄色の四角を作成
+                console.log('a');
+                createRect();
+            } else if (rectDict !== 'null'){
+                console.log('b');
+                //青色だったら黄色にする
+                createRect();
+            }
+        // });
+    }
+
+    function setRect(x, y, w, h, color) {
+        //四角の条件を設定する
+        return new Konva.Rect({
+        x: x,
+        y: y,
+        height: h,
+        width: w,
+        fill: 'color',
+        opacity: 0.2,
+        strokeWidth: 2
+        });
+    }
+
+    function  createRect() {
+        //黄色い四角を作成する
+        $('input[type="text"]').focus(function(){
+            let x = $(this).attr('rect-x');
+            let y = $(this).attr('rect-y');
+            let w = $(this).attr('rect-w');
+            let h = $(this).attr('rect-h');
+            let rect = setRect(x, y, w, h, 'yellow');
+
+            var layer = new Konva.Layer();
+            layer.add(rect);
+            stage.add(layer);
+            console.log('now');
+
+            rectArray.push({
+                rect: rect,
+                // handlerId: buttonのID / fieldのID
+            });
+        });
+    }
+
+    // 【3】フィールドからフォーカスアウトした
+    function outFocus(element) {
         // フォーカスアウトしたフィールドとは背景白色
         $('input[type="text"]').blur(function(){
             $(this).removeClass('on-edit');
+            var inputId = $(this).attr('id');
+            var element = document.getElementsByClassName(inputId);
+            $(element[0]).addClass('on-edit');
+            $(element[0]).removeClass('on-edit');
         });
     }
+
+    // 【4】確定ボタンが押される
+            // 1.ボタンとフィールドを青色にする
+
+
+            // 2.四角を青色にする
 
 
 
@@ -329,8 +416,11 @@
 
     // 2.入力待ちフィールドにfocusin:
     $(document).ready(function(){
-        OnFocus();
-        OutFocus();
+        onFocus();
+        outFocus();
+
+        // searchRect();
+        // createRect();
     });
 
 
