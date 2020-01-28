@@ -149,8 +149,8 @@ class ShipController extends Controller
             $confirm_id = $request['confirm_id'];
 
             //FAXを表示できるように処理する
-            $pdf_path = public_path('/img/sample(1).pdf');
-            $image_path = public_path('/png/sample(1).png');
+            $pdf_path = public_path('/img/sample1.pdf');
+            $image_path = public_path('/png/sample1.png');
             try{
                 $pdf = new \Spatie\PdfToImage\Pdf($pdf_path);
                 $pdf->setOutputFormat('png');
