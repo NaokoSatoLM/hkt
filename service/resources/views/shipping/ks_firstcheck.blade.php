@@ -59,36 +59,70 @@
             <div id='inputForm'>
                 <div class="buttons has-addons">
                     <button class="button">
-                        発注者:&emsp;&emsp;&emsp;
-                        <input type='text' id='ordering_company' 
-                                placeholder="{{$request['company']}}" class="set-size check1 fax-field">
+                        発注先:&emsp;&emsp;&emsp;
+                        <input type='text' id='order_company'
+                                placeholder="{{$request['company']}}" class="set-size check1 fax-field"
+                                rect-x="483"
+                                rect-y="23"
+                                rect-w="250"
+                                rect-h="100">
                     </button>
                     <button class="button">
-                        <input type="button" id='check1' value="確定" class="check1 button is-small is-selected "><br>
+                        <input type="button" id='check1' value="確定" class="check1 button is-small is-selected order_company" for='order_company'><br>
+                    </button>
+                </div>
+                納品先情報<br>
+                <div class="buttons has-addons">
+                    <button class="button">
+                        会社名:&emsp;&emsp;<input type='text' 
+                        id='delivery_company'  
+                        placeholder="{{$request['company']}}" 
+                        class="set-size check2 fax-field"
+                        x="483" y="23" width="250" height="100">
+                    </button><br>&emsp;
+                    <button class="button">
+                        郵便番号:&emsp;<input type='text' id="post-code"
+                            placeholder="701-0203" class="set-size check1 fax-field">
+                    </button><br>&emsp;
+                    <button class="button">
+                        住所:&emsp;&emsp;&emsp;<input type='text' id="adress"
+                            placeholder="{{$request['place']}}" class="set-size check1 fax-field">
+                    </button><br>&emsp;
+                    <button class="button">
+                        電話番号:&emsp;<input type='text' id="phone-num"
+                            placeholder="086-281-9558" class="set-size check1 fax-field">
+                    </button><br>&emsp;
+                    <button class="button">
+                        担当者:&emsp;&emsp;<input type='text' id="p-incharge"
+                            placeholder="窪田 修" class="set-size check1 fax-field">
+                    </button><br>&emsp;
+                    <button class="button">
+                        <input type="button" id='check2' value="確定" 
+                        class="
+                            check2 
+                            button 
+                            is-small
+                            delivery_company
+                            post-code
+                            adress
+                            phone-num
+                            p-incharge">
+                    </button><br>
+                </div>
+                <div class="buttons has-addons">
+                    <button class="button">
+                        納品希望日:&emsp;<input type='text'   placeholder="2019/9/6" class="set-size-day check8 fax-field" id="deli_date1">
+                    </button>
+                    <button class="button">
+                        <input type="button" id='check8' value="確定" class="check8 button is-small deli_date1">
                     </button>
                 </div>
                 <div class="buttons has-addons">
                     <button class="button">
-                        納品先:&emsp;&emsp;&emsp;<input type='text' id='delivery_place'  placeholder="{{$request['place']}}" class="set-size check2 fax-field">
+                        発注No.:&emsp;&emsp;&nbsp;<input type='text' id="order-num"  placeholder="235435" class="set-size-day check5 fax-field">
                     </button>
                     <button class="button">
-                            <input type="button" id='check2' value="確定" class="check2 button is-small"><br>
-                    </button>
-                </div>
-                <div class="buttons has-addons">
-                    <button class="button">
-                        納品希望日:&emsp;<input type='text'   placeholder="{{$request['date']}}" class="set-size-day check8 fax-field" id="deli_date2">
-                    </button>
-                    <button class="button">
-                        <input type="button" id='check8' value="確定" class="check8 button is-small">
-                    </button>
-                </div>
-                <div class="buttons has-addons">
-                    <button class="button">
-                        発注No.:&emsp;&emsp;&nbsp;<input type='text'   placeholder="{{$request['date']}}" class="set-size-day check5 fax-field">
-                    </button>
-                    <button class="button">
-                        <input type="button" value="確定" class="check5 button is-small" id="check5">
+                        <input type="button" value="確定" class="check5 button is-small order-num" id="check5 order-num">
                     </button>
                 </div>
                 <div class="around-box">
@@ -98,25 +132,50 @@
                             注文商品詳細:
                             <table border="1" class="table is-striped is-hoverable" >
                                 <tr>
-                                    <th class="th">商品名<br>商品コード</th>
-                                    <th class="th">数量</th>
-                                    <th class="th">入数</th>
-                                    <th class="th">発注数</th>
-                                    <th class="th">単価</th>
-                                    <th class="th">合計金額</th>
+                                    <th style="width:20%;">商品名<br>商品コード</th>
+                                    <th style="width:10%;">数量</th>
+                                    <th style="width:10%;">入数</th>
+                                    <th style="width:15%;">発注数</th>
+                                    <th style="width:15%;">単価</th>
+                                    <th style="width:15%;">合計金額</th>
                                 </tr>
                                 @foreach($datas as $data)
                                 <tr>
-                                    <td><input type="text" value="{{$data['商品名']}}" class="check6 item check"><br><input type="text" value="000-000" class="check6 item"></td>
-                                    <td><input type="text" value="{{$data['数量']}}" class="check6 item"></td>
-                                    <td><input type="text" value="{{$data['入数']}}" class="check6 item"></td>
-                                    <td><input type="text" value="{{$data['発注数']}}" class="check6 item">個</td>
-                                    <td><input type="text" value="{{$data['単価']}}" class="check6 item">円</td>
-                                    <td><input type="text" value="{{$data['合計金額']}}" class="check6 item">円</td>
+                                    <td><input type="text" 
+                                        value="{{$data['商品名']}}" 
+                                        class="check6 item-wide check" id="order-item"><br>
+                                        <input type="text" value="000-000" class="check6 item-wide" id="order-code">
+                                    </td>
+                                    <td>
+                                        <select class="item-mid"> 
+                                            <option selected>{{$data['数量']}}</option>
+                                            <option>1kg</option>
+                                            <option>5kg</option>
+                                            <option>50kg</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="item-mid"> 
+                                            <option selected>{{$data['入数']}}</option>
+                                            <option>20×10</option>
+                                            <option>100×2</option>
+                                        </select>
+                                    </td>
+                                    <td><input type="text" 
+                                        value="{{$data['発注数']}}" 
+                                        class="check6 item-mini" id="order-count">個
+                                    </td>
+                                    <td><input type="text" 
+                                        value="{{$data['単価']}}" 
+                                        class="check6 item-sma" 
+                                        id="order-price">円
+                                    </td>
+                                    <td><input type="text" value="{{$data['合計金額']}}" class="check6 item-sma" id="order-tprice">円</td>
                                 </tr>
                                 @endforeach
                             </table>
-                            <input type="button"  value="確定" class="check6 button is-small" id="check6">
+                            <input type="button"  value="確定" id="check6"
+                                    class="check6 button is-small order-item order-code order-count order-price order-tprice" >
                         </div>
                     </div>
                 </div>
@@ -125,9 +184,18 @@
                 <!-- data確認後送付処理 -->
                 <form method="GET" action="/index">
                     <!-- 一時保存 -->
-                    <input type="submit" value="一時保存" id="save" class="save button is-gray is-large">&emsp;
+                    <input type="submit" value="一時保存" id="temp" class="save button is-gray is-large">&emsp;
                     <!-- 保存 -->
                     <input type="submit" value="確認完了" id="save" class="save button is-gray is-large">&emsp;
+                </form>
+                <form method="GET" action="/ks_check">
+                    <!-- 承認画面へ遷移 -->
+                    <input type="submit" value="承認" id="move" class="save button is-gray is-large">&emsp;
+                    <input type="hidden" name="confirm_id" id="confirm_id" value="2">
+                    <div>
+                        <input type="checkbox" class="approve">&emsp;
+                        承認画面に進む場合は<br>&emsp;チェックを入れてください
+                    </div>
                 </form>
             </div>
         </div>
