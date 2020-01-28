@@ -127,13 +127,6 @@
 //             });
 
 
-
-
-
-
-
-
-
 //     //発注者にチェック入ったとき
 //     $(function(){
 //         $('#check1').on('click', function(event){
