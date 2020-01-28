@@ -44,34 +44,39 @@
                     <button class="button">
                         発注者:&emsp;&emsp;&emsp;
                         <input type='text' id='ordering_company' 
-                                placeholder="{{$request['company']}}" class="set-size check1">
+                                placeholder="藤徳物産株式会社" class="set-size check1">
                     </button>
                 </div>
                 <div class="buttons has-addons">
                     <button class="button">
-                        納品先:&emsp;&emsp;&emsp;<input type='text' id='delivery_place'  placeholder="{{$request['place']}}" class="set-size check2">
+                        郵便番号:&emsp;&emsp;<input type='text' id='delivery_place'  placeholder="701-203" class="set-size check2">
                     </button>
                 </div>
                 <div class="buttons has-addons">
                     <button class="button">
-                        受注日:&emsp;&emsp;&emsp;<input type='text' placeholder="{{$request['date']}}" class="set-size-day check3">
+                        納品先:&emsp;&emsp;&emsp;<input type='text' id='delivery_place'  placeholder="岡山県岡山市南区古新田 1283-3" class="set-size check2">
                     </button>
                 </div>
                 <div class="buttons has-addons">
                     <button class="button">
-                        納品希望日:&emsp;<input type='text'   placeholder="{{$request['date']}}" class="set-size-day check8" id="deli_date2">
+                        受注日:&emsp;&emsp;&emsp;<input type='text' placeholder="2019/9/6" class="set-size-large check3">
                     </button>
                 </div>
                 <div class="buttons has-addons">
                     <button class="button">
-                        納品確定日:&emsp;<input type='text'   placeholder="{{$request['date']}}" class="set-size-day check4" id="deli_date3">
+                        納品希望日:&emsp;<input type='text'   placeholder="2019/9/6" class="set-size-large check8" id="deli_date2">
+                    </button>
+                </div>
+                <div class="buttons has-addons">
+                    <button class="button">
+                        納品確定日:&emsp;<input type='text'   placeholder="2019/9/6" class="set-size-large check4" id="deli_date3">
                     </button>
                 </div>
             </div>
             <div class="column is-4 position">
                 <div class="buttons has-addons">
                     <button class="button">
-                        発注No.:&emsp;&emsp;&nbsp;<input type='text'   placeholder="{{$request['date']}}" class="set-size-day check5 ">
+                        発注No.:&emsp;&emsp;&nbsp;<input type='text'   placeholder="235435" class="set-size-large check5">
                     </button>
                 </div>
                 <div class="check11">
@@ -131,7 +136,7 @@
                 <div class="buttons has-addons">
                     <button class="button">
                         【売上区分】&emsp;&nbsp;
-                        <select><option class="radio">選択してください</option></select>
+                        <select class="set-size-large"><option class="radio"></option></select>
                         <br>
                     </button>
                 </div>
@@ -174,14 +179,14 @@
                         </table>
                         《合計》<br>
                         <div >
-                            オーダーNo.：&nbsp;<input type="text" class="under-table">&emsp;
-                            受注金額：&nbsp;<input type="text" class="under-table">&emsp;
-                            消費税：&nbsp;<input type="text" class="under-table">&emsp;
-                            税込み金額：&nbsp;<input type="text" class="under-table"><br>
+                            オーダーNo.：&nbsp;<input type="text" class="under-table" placeholder="○○○○○○">&emsp;
+                            受注金額：&nbsp;<input type="text" class="under-table" placeholder="130,000-">&emsp;
+                            消費税：&nbsp;<input type="text" class="under-table" placeholder="13,000-">&emsp;
+                            税込み金額：&nbsp;<input type="text" class="under-table" placeholder="143,000-"><br>
                         </div>
                         <div class="table-summary">
-                            数量：&emsp;<input type="text" class="under-table">&emsp;
-                            重量：&nbsp;&emsp;<input type="text" class="under-table">&emsp;
+                            数量：&emsp;<input type="text" class="under-table" placeholder="××××××個">&emsp;
+                            重量：&nbsp;&emsp;<input type="text" class="under-table" placeholder="×××g">&emsp;
                             伝送：&nbsp;&emsp;
                             <input type="radio" class="radio">&nbsp;なし
                             <input type="radio" class="radio">&nbsp;あり
