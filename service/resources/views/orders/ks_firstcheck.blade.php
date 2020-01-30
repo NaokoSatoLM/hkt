@@ -21,10 +21,6 @@
         <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
         <!-- Css -->
         <link href="{{ asset('css/firstcheck.css') }}" rel="stylesheet">
-        <!-- Styles -->
-        <style>
-
-        </style>
     </head>
 <body>
     <div class="content">
@@ -60,12 +56,13 @@
                 <div class="buttons has-addons">
                     <button class="button">
                         発注先:&emsp;&emsp;&emsp;
-                        <input type='text' id='order_company'
-                                placeholder="{{$request['company']}}" class="set-size check1 fax-field"
-                                rect-x="483"
-                                rect-y="23"
-                                rect-w="250"
-                                rect-h="100">
+                        <input type='text' 
+                            id='order_company'
+                            placeholder="{{$request['company']}}" class="set-size check1 fax-field"
+                            rect-x="483"
+                            rect-y="23"
+                            rect-w="250"
+                            rect-h="100">
                     </button>
                     <button class="button">
                         <input type="button" id='check1' value="確定" class="check1 button is-small is-selected order_company" for='order_company'><br>
@@ -74,15 +71,25 @@
                 納品先情報<br>
                 <div class="buttons has-addons">
                     <button class="button">
-                        会社名:&emsp;&emsp;<input type='text' 
-                        id='delivery_company'  
-                        placeholder="{{$request['company']}}" 
-                        class="set-size check2 fax-field"
-                        x="483" y="23" width="250" height="100">
+                        会社名:&emsp;&emsp;
+                        <input type='text'
+                            id='delivery_company'
+                            placeholder="{{$request['company']}}"
+                            class="set-size check2 fax-field"
+                            x="483" 
+                            y="23" 
+                            width="250" 
+                            height="100">
                     </button><br>&emsp;
                     <button class="button">
-                        郵便番号:&emsp;<input type='text' id="post-code"
-                            placeholder="701-0203" class="set-size check1 fax-field">
+                        郵便番号:&emsp;<input type='text' 
+                        id="post-code"
+                            placeholder="701-0203" 
+                            class="set-size check1 fax-field"
+                            x="1078" 
+                            y="390" 
+                            width="700" 
+                            height="140">
                     </button><br>&emsp;
                     <button class="button">
                         住所:&emsp;&emsp;&emsp;<input type='text' id="adress"

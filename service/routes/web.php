@@ -20,4 +20,6 @@ Route::get('/ks_index', 'OrderSearchController@ksIndex');
 Route::post('/ks_index', 'OrderSearchController@ksSearch');
 Route::get('/ks_check', 'CheckController@ksCheck');
 Route::get('/past_order_detail', 'CheckController@showDetail');
-
+Route::get('/practice',function(){
+    return view('practice');
+});

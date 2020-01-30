@@ -252,8 +252,7 @@
 // -------------------------------------------------------
 
 /////イベント処理を書く
-// 必要な変数作成
-    var stage ;
+
 // 必要な配列作成
     //1.四角の図形を格納する配列
     rectArray = [
@@ -272,12 +271,12 @@
 
 // -【1】画面表示
 //  -PDFの画像を読みこんで表示する
-     function showPDFImg() {
+    function showPDFImg() {
         // konva描画の画面サイズ設定
         var width = document.documentElement.clientWidth*0.44;
         var height = document.documentElement.clientHeight;
 
-        var stage = new Konva.Stage({
+        const stage = new Konva.Stage({
             container: 'container',
             width: width,
             height: height,
@@ -306,41 +305,27 @@
         stage.add(backlayer);
         backlayer.moveToBottom()
         };
+        return stage ;
     }
 
     // -【2】フィールドが入力モードになったとき
 
-    function onFocus() {
+    function onFocus(textFieldClass,fieldId) {
         // フォーカスされたフィールドとボタンを黄色にする
-        $('input[type="text"]').focus(function(){
-            $(this).addClass('on-edit');
-            //入力モードのinputタグのIDと同じclassを持っているボタンを探す
-             var fieldId = $(this).attr('id');
-             var element = document.getElementsByClassName(fieldId);
-             $(element[0]).addClass('on-edit');
+        $(textFieldClass).addClass('on-edit');
+        //入力モードのinputタグのIDと同じclassを持っているボタンを探す
+        var element = document.getElementsByClassName(fieldId);
+        $(element[0]).addClass('on-edit');
 
-            searchRect(element[0]);
-        });
     }
 
-    function searchRect(elementId) {
+    function searchRect(fieldId) {
         //四角が作成されているか配列から探す。フォーカスのあったIDから、その関連する四角をrectArray配列から検索
-        // $('input[type="text"]').focus(function(){
-        //     var fieldId = $(this).attr('id');
-            let rectDict = rectArray.find(rect => rect.handlerId == elementId);
-            console.log(rectDict);
-                //→見つければ、handlerId: "order_company"など、見つからないundifined
 
-            if(rectDict === 'null') {
-                //黄色の四角を作成
-                console.log('a');
-                createRect();
-            } else if (rectDict !== 'null'){
-                console.log('b');
-                //青色だったら黄色にする
-                createRect();
-            }
-        // });
+        let rectDict = rectArray.find(rect => rect.handlerId == fieldId);
+
+        //→見つければ、handlerId: "order_company"など、見つからないundifined
+        return rectDict ;
     }
 
     function setRect(x, y, w, h, color) {
@@ -350,72 +335,132 @@
         y: y,
         height: h,
         width: w,
-        fill: 'color',
+        fill: color,
         opacity: 0.2,
         strokeWidth: 2
         });
     }
 
-    function  createRect() {
+    function  createRect(textFieldClass, stage, fieldId, layer) {
         //黄色い四角を作成する
-        $('input[type="text"]').focus(function(){
-            let x = $(this).attr('rect-x');
-            let y = $(this).attr('rect-y');
-            let w = $(this).attr('rect-w');
-            let h = $(this).attr('rect-h');
+            let x = $(textFieldClass).attr('rect-x');
+            let y = $(textFieldClass).attr('rect-y');
+            let w = $(textFieldClass).attr('rect-w');
+            let h = $(textFieldClass).attr('rect-h');
             let rect = setRect(x, y, w, h, 'yellow');
-
-            var layer = new Konva.Layer();
             layer.add(rect);
             stage.add(layer);
-            console.log('now');
+            console.log(fieldId);
+            console.log(rectArray.length);
 
-            rectArray.push({
-                rect: rect,
+            rectArray.push(
+               {'handlerId': fieldId },
                 // handlerId: buttonのID / fieldのID
-            });
-        });
+                // {handlerId:'order_company'},
+            );
+            console.log(rectArray[0]);
+
+            return layer ;
+    }
+
+    function  deleteRectByFocusOut(textFieldClass, stage, fieldId) {
+        //対象の四角を消す
+
+            // var deleteFromLayer = layer.destroyChildren();
+            rectArray.pop(
+               {'handlerId': fieldId },
+                // handlerId: buttonのID / fieldのID
+                // {handlerId:'order_company'},
+            );
+
     }
 
     // 【3】フィールドからフォーカスアウトした
-    function outFocus(element) {
+    function outFocus(textFieldClass,fieldId) {
         // フォーカスアウトしたフィールドとは背景白色
-        $('input[type="text"]').blur(function(){
-            $(this).removeClass('on-edit');
-            var inputId = $(this).attr('id');
-            var element = document.getElementsByClassName(inputId);
-            $(element[0]).addClass('on-edit');
-            $(element[0]).removeClass('on-edit');
-        });
+        $(textFieldClass).removeClass('on-edit');
+        var element = document.getElementsByClassName(fieldId);
+        $(element[0]).removeClass('on-edit');
+
     }
 
-    // 【4】確定ボタンが押される
-            // 1.ボタンとフィールドを青色にする
+    //【4】確定ボタンが押される
+    // 1.ボタンとフィールドを青色にする
+    function clickComfirmButton(buttonFieldClass, fieldId){
+        // ボタンの属性とる
+        
+        $(buttonFieldClass).addClass('checked');
+        var element = document.getElementsByClassName(fieldId);
+        $(element[0]).addClass('checked');
+
+    }
+
+    // 2.四角を青色にする
 
 
-            // 2.四角を青色にする
 
 
 
 
-
-
-    ///// 実行処理//////
-    // 1.PDFの呼び出し
-    let target = document.getElementById('container');
-    $(document).ready( function(){
-        showPDFImg();
-    });
+///// 実行処理//////
+// 1.PDFの呼び出し
+let target = document.getElementById('container');
+$(document).ready(function(){
+     var konvaStage = showPDFImg();
+    
 
     // 2.入力待ちフィールドにfocusin:
-    $(document).ready(function(){
-        onFocus();
-        outFocus();
+    $('input[type="text"]').on('focus',function(){
+        var textFieldClass = this;                    //タグ内全部返ってくる
+        var fieldId = $(textFieldClass).attr('id'); //order-companyみたいなId返ってくる
 
-        // searchRect();
-        // createRect();
+        onFocus(textFieldClass,fieldId);
+        var rectDict = searchRect(fieldId);
+
+        // var rectDict = rectDict ;
+
+        if(rectDict == null) {
+            //黄色の四角を作成
+            var layer = new Konva.Layer();
+            var drawedLayer = createRect(textFieldClass, konvaStage, fieldId, layer);
+
+
+        } else{
+            //青色だったら黄色にする
+        }
+    });
+
+    // 3．編集中フィールドからfocusout:
+    $('input[type="text"]').blur(function(){
+        var textFieldClass = this;
+        var fieldId = $(textFieldClass).attr('id');
+        outFocus(textFieldClass, fieldId);
+        var rectDict = searchRect(fieldId);
+        if(rectDict != null) {
+            //ある場合削除
+            // var tagetRect = this.createRect().drawedLayer;
+            deleteRectByFocusOut(textFieldClass, konvaStage, fieldId);
+        } else{
+            //ない場合そのまま
+        }
     });
 
 
-    // 3．編集中フィールドからfocusout:
+
     // 4.確定ボタンをclick:
+    $('input[type="button"]').on('click',function(){
+        var buttonFieldClass = this;                //タグ内全部返ってくる
+        var fieldId = $(buttonFieldClass).attr('id'); //order-companyみたいなId返ってくる
+        clickComfirmButton(buttonFieldClass, fieldId);
+        // ボタンの属性とる
+    
+        // 黄色を外す（on-edit外す）
+        
+        // 青色にするためclass にchecked 付与
+        // 四角検索
+        // あれば青色に変更する
+
+
+
+    });
+});
